@@ -1,0 +1,11 @@
+# Nodes in the prefix with the lowest motif conductance (set S)
+# Motif: square
+# Network: my_example
+# Minimum conductance: 0.35802469135802467
+# Number of nodes in prefix: 5
+
+9
+8
+7
+10
+6

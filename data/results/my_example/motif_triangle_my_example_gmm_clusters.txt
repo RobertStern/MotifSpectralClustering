@@ -1,0 +1,19 @@
+# Gaussian Mixture Model clustering results
+# Motif: triangle
+# Network: my_example
+# Number of clusters: 2
+
+# Cluster 1 (5 nodes):
+1
+2
+3
+4
+5
+
+# Cluster 2 (5 nodes):
+6
+7
+8
+9
+10
+

@@ -1,0 +1,13 @@
+# Edges within set S (min_conductance)
+# Motif: square
+# Network: my_example
+# Number of nodes: 5
+# Number of edges: 7
+
+8 6
+8 9
+8 10
+10 9
+6 7
+6 9
+9 7

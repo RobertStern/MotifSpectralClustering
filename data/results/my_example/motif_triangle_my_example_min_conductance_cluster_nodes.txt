@@ -1,0 +1,12 @@
+# Nodes in the cluster with the lowest motif conductance
+# Motif: triangle
+# Network: my_example
+# Cluster: 1
+# Conductance: 0.23076923076923078
+# Number of nodes: 5
+
+6
+7
+8
+9
+10

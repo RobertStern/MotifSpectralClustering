@@ -1,0 +1,9 @@
+# Nodes in cluster 1
+# Motif: square
+# Network: my_example
+# Number of nodes: 4
+
+6
+7
+8
+9

@@ -1,0 +1,9 @@
+# Edges within set Cluster 3 (cluster_3)
+# Motif: triangle
+# Network: my_example
+# Number of nodes: 3
+# Number of edges: 3
+
+9 8
+9 10
+8 10

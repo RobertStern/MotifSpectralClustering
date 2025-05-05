@@ -1,0 +1,10 @@
+# Nodes in GMM cluster 1
+# Motif: triangle
+# Network: my_example
+# Number of nodes: 5
+
+1
+2
+3
+4
+5

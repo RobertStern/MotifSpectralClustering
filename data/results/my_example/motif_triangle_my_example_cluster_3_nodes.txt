@@ -1,0 +1,8 @@
+# Nodes in cluster 3
+# Motif: triangle
+# Network: my_example
+# Number of nodes: 3
+
+8
+9
+10

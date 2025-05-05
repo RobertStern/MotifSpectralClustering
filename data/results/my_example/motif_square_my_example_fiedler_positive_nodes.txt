@@ -1,0 +1,12 @@
+# Nodes with positive or zero values in the Fiedler vector (set T)
+# Motif: square
+# Network: my_example
+# Number of nodes: 7
+
+1
+2
+3
+4
+5
+11
+12
