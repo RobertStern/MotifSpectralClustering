@@ -1,0 +1,26 @@
+# Nodes in the cluster with the lowest motif conductance
+# Motif: triangle
+# Network: graph_300_650_80.0
+# Cluster: 2
+# Conductance: 0.0
+# Number of nodes: 19
+
+47840
+18908
+50968
+22708
+50600
+10856
+6635
+51120
+29604
+14810
+50781
+54810
+26769
+14680
+34081
+41827
+34391
+55587
+43053

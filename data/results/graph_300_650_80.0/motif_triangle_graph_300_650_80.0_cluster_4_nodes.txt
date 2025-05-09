@@ -1,0 +1,8 @@
+# Nodes in cluster 4
+# Motif: triangle
+# Network: graph_300_650_80.0
+# Number of nodes: 3
+
+10606
+43164
+50848

@@ -47,7 +47,7 @@ pip install -r requirements.txt
 ### Basic Usage
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/network.txt --motif triangle
+python scripts/motif_spectral_analysis.py --network data/examples/network.txt --motif triangle
 ```
 
 This will:
@@ -58,12 +58,55 @@ This will:
 5. Compute conductance for the resulting partition
 6. Save results to the `data/results` directory
 
+### Running All Motifs
+
+For a comprehensive analysis of all available motifs on a network, use the `run_all_motifs.py` script:
+
+```bash
+python scripts/run_all_motifs.py --network data/examples/network.txt
+```
+
+This will:
+1. Process all available motifs (triangle, square, diamond, cycle_chord, complete4)
+2. Calculate optimal k values using eigen-gap, elbow, and silhouette methods
+3. Apply multiple clustering algorithms (K-means, Mini-batch K-means, GMM, MAPPR)
+4. Save detailed results to CSV and a human-readable summary file
+
+#### Batch Processing
+
+You can also process multiple network files in a directory structure:
+
+```bash
+python scripts/run_all_motifs.py --granger-dir
+```
+
+This will find all `.edge` files in the `data/granger` directory and its subdirectories, and process each one with a unique output name based on the subfolder structure.
+
+#### Specifying Seed Methods for MAPPR
+
+```bash
+python scripts/run_all_motifs.py --network data/examples/network.txt --seed-method first last middle
+```
+
+Available seed methods:
+- `first`: Uses the first few nodes as seeds
+- `last`: Uses the last few nodes as seeds
+- `middle`: Uses nodes from the middle of the matrix as seeds
+
+If no seed methods are specified, the script uses "combined" and "fiedler" methods to find good seed nodes.
+
+#### Specifying Optimal K
+
+```bash
+python scripts/run_all_motifs.py --network data/examples/network.txt --optimal-k 5
+```
+
+This uses the specified value for k instead of calculating optimal k. The value will be used for k-means, mini-batch k-means, GMM, and as the number of seed nodes for MAPPR.
+
 ### Available Motifs
 
 The following motifs are available:
-- `path`: Path of length 2 (3 nodes, 2 edges)
 - `triangle`: Complete graph on 3 nodes
-- `path3`: Path of length 3 (4 nodes, 3 edges)
 - `star`: Star with 3 leaves (4 nodes, 3 edges)
 - `square`: Cycle on 4 nodes
 - `diamond`: 4-node graph with 4 edges (cycle with one chord)
@@ -75,58 +118,38 @@ The following motifs are available:
 #### K-means Clustering
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm kmeans --clusters 5
+python scripts/motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm kmeans --clusters 5
 ```
 
 #### Mini-batch K-means (for large networks)
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm minibatch --clusters 5 --batch-size 100
+python scripts/motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm minibatch --clusters 5 --batch-size 100
 ```
 
 #### Gaussian Mixture Models
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm gmm --clusters 5 --covariance-type full
+python scripts/motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm gmm --clusters 5 --covariance-type full
 ```
 
 #### Automatic Cluster Number Selection with Eigengap Heuristic
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --use-eigengap --max-k 20
+python scripts/motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --use-eigengap --max-k 20
 ```
 
 #### Local Clustering with MAPPR
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm mappr --seed-nodes node1 node2
+python scripts/motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm mappr --seed-nodes node1 node2
 ```
 
 Or automatically find good seed nodes:
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm mappr --auto-seed --num-seeds 10
+python scripts/motif_spectral_analysis.py --network data/examples/network.txt --motif triangle --algorithm mappr --auto-seed --num-seeds 10
 ```
-
-### Command-line Arguments
-
-- `--network`: Path to the network file (required)
-- `--motif`: Name of the motif to analyze (required)
-- `--algorithm`: Clustering algorithm to use (`kmeans`, `minibatch`, `gmm`, or `mappr`)
-- `--clusters`: Number of clusters for k-means, mini-batch k-means, or GMM
-- `--use-eigengap`: Use eigengap heuristic to automatically determine the optimal number of clusters
-- `--max-k`: Maximum number of clusters to consider when using eigengap heuristic
-- `--covariance-type`: Type of covariance parameters for GMM (`full`, `tied`, `diag`, `spherical`)
-- `--n-init`: Number of initializations for GMM
-- `--batch-size`: Batch size for mini-batch k-means
-- `--max-iter`: Maximum number of iterations for mini-batch k-means or GMM
-- `--reassignment-ratio`: Control parameter for mini-batch k-means
-- `--seed-nodes`: Seed node(s) for MAPPR local clustering
-- `--alpha`: Teleportation parameter for MAPPR
-- `--epsilon`: Approximation parameter for MAPPR
-- `--auto-seed`: Automatically find good seed nodes for MAPPR
-- `--seed-method`: Method for ranking nodes when finding good seed nodes (`degree`, `pagerank`, `motif`, `combined`)
-- `--num-seeds`: Number of seed nodes to find when using `--auto-seed`
 
 ## Output Files
 
@@ -138,24 +161,48 @@ Results are saved in the `data/results/<network_name>` directory:
 - Conductance results: `motif_<motif_name>_<network_name>_min_conductance_nodes.txt`
 - MAPPR results: `motif_<motif_name>_<network_name>_mappr_cluster_<seed>_nodes.txt`
 
+For the `run_all_motifs.py` script, results are saved in the `data/results/all_motifs` directory:
+
+- Summary files: `<network_name>_summary.txt`
+- Detailed CSV results: `<network_name>_motifs.csv`
+
+The summary file includes:
+- Network properties (nodes, edges)
+- Motif occurrences and processing time
+- Optimal k values found by each method
+- Clustering results for each method (K-means, Mini-batch K-means, GMM, MAPPR)
+- Cluster sizes and statistics
+
 ## Examples
 
 ### Example 1: Basic Spectral Bisection
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/karate.txt --motif triangle
+python scripts/motif_spectral_analysis.py --network data/examples/karate.txt --motif triangle
 ```
 
 ### Example 2: Multi-way Clustering with GMM
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/karate.txt --motif triangle --algorithm gmm --clusters 4
+python scripts/motif_spectral_analysis.py --network data/examples/karate.txt --motif triangle --algorithm gmm --clusters 4
 ```
 
 ### Example 3: Local Clustering with MAPPR
 
 ```bash
-python motif_spectral_analysis.py --network data/examples/karate.txt --motif triangle --algorithm mappr --seed-nodes 0
+python scripts/motif_spectral_analysis.py --network data/examples/karate.txt --motif triangle --algorithm mappr --seed-nodes 0
+```
+
+### Example 4: Comprehensive Analysis of All Motifs
+
+```bash
+python scripts/run_all_motifs.py --network data/examples/karate.txt
+```
+
+### Example 5: Batch Processing of Multiple Networks
+
+```bash
+python scripts/run_all_motifs.py --granger-dir
 ```
 
 ## References

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CsvFileAttributes">
+    <option name="attributeMap">
+      <map>
+        <entry key="/data/results/all_motifs/3v4_motifs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/results/all_motifs/graph_300_650_80.0_motifs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/results/all_motifs/my_example_motifs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/results/all_motifs/small_network_motifs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/results/graph_300_650_100.0/motif_square_1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/data/results/my_example/motif_triangle_1.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,9 @@
+# Edges within set Cluster 4 (cluster_4)
+# Motif: triangle
+# Network: graph_300_650_80.0
+# Number of nodes: 3
+# Number of edges: 3
+
+43164 10606
+43164 50848
+50848 10606

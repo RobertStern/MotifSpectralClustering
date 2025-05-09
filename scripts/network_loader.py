@@ -108,9 +108,9 @@ def save_as_png(G: nx.Graph, output_file: str, title: str = "Network Visualizati
             input_basename = os.path.basename(input_file)
             input_name, _ = os.path.splitext(input_basename)
             # Create a subfolder path
-            output_file = os.path.join('data', 'results', input_name, output_file)
+            output_file = os.path.join('../data', 'results', input_name, output_file)
         else:
-            output_file = os.path.join('data', 'results', output_file)
+            output_file = os.path.join('../data', 'results', output_file)
 
     print(f"Saving network to {output_file}...")
     start_time = time.time()
@@ -177,9 +177,9 @@ def save_as_gexf(G: nx.Graph, output_file: str, input_file: Optional[str] = None
             input_basename = os.path.basename(input_file)
             input_name, _ = os.path.splitext(input_basename)
             # Create a subfolder path
-            output_file = os.path.join('data', 'results', input_name, output_file)
+            output_file = os.path.join('../data', 'results', input_name, output_file)
         else:
-            output_file = os.path.join('data', 'results', output_file)
+            output_file = os.path.join('../data', 'results', output_file)
 
     # Ensure the file has a .gexf extension
     if not output_file.lower().endswith('.gexf'):
